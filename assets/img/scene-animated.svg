@@ -1,0 +1,96 @@
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice">
+        <defs>
+<linearGradient id="skyBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0c2733"/><stop offset=".38" stop-color="#14566b"/><stop offset=".78" stop-color="#e9a85c"/><stop offset="1" stop-color="#f7cf86"/></linearGradient>
+            <radialGradient id="sunG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3c4"/><stop offset=".45" stop-color="#ffd272"/><stop offset="1" stop-color="#ffd272" stop-opacity="0"/></radialGradient>
+            <linearGradient id="field" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2b84e"/><stop offset="1" stop-color="#b98a2a"/></linearGradient>
+            <pattern id="rows" width="40" height="14" patternUnits="userSpaceOnUse"><rect width="40" height="14" fill="none"/><path d="M0 7 H40" stroke="#9c7219" stroke-opacity=".35" stroke-width="2"/></pattern>
+            <g id="palm">
+                <path d="M0 0 C10 -110 -8 -220 16 -330" stroke="#5a3a28" stroke-width="17" fill="none" stroke-linecap="round"/>
+                <path d="M0 0 C10 -110 -8 -220 16 -330" stroke="#7a5238" stroke-width="5" fill="none" stroke-linecap="round" stroke-dasharray="3 14" transform="translate(-3 0)"/>
+                <g transform="translate(16 -330)">
+                    <g class="frond-wave"><path d="M0 0 C60 -70 150 -60 215 10 C150 -22 70 -24 0 0Z" fill="#2f8a57" transform="rotate(-18)"/></g>
+                    <g class="frond-wave" style="animation-delay:-1s"><path d="M0 0 C60 -70 150 -60 215 10 C150 -22 70 -24 0 0Z" fill="#256f45" transform="rotate(-62)"/></g>
+                    <g class="frond-wave" style="animation-delay:-2s"><path d="M0 0 C60 -70 150 -60 215 10 C150 -22 70 -24 0 0Z" fill="#37a066" transform="rotate(-108)"/></g>
+                    <g class="frond-wave" style="animation-delay:-.5s"><path d="M0 0 C60 -70 150 -60 215 10 C150 -22 70 -24 0 0Z" fill="#2f8a57" transform="rotate(-150)"/></g>
+                    <g class="frond-wave" style="animation-delay:-1.5s"><path d="M0 0 C60 -70 150 -60 215 10 C150 -22 70 -24 0 0Z" fill="#256f45" transform="rotate(-195)"/></g>
+                    <g class="frond-wave" style="animation-delay:-2.5s"><path d="M0 0 C60 -70 150 -60 215 10 C150 -22 70 -24 0 0Z" fill="#37a066" transform="rotate(25)"/></g>
+                    <circle cx="-6" cy="14" r="11" fill="#6b4a2b"/><circle cx="12" cy="18" r="11" fill="#7c5833"/><circle cx="2" cy="28" r="10" fill="#5e4025"/>
+                </g>
+            </g>
+        </defs>
+<style>
+.rays{transform-origin:520px 560px;animation:spin 90s linear infinite}
+.sun-glow{animation:breathe 6s ease-in-out infinite;transform-origin:520px 560px}
+.cloud{animation:drift linear infinite}.cloud.c1{animation-duration:120s}.cloud.c2{animation-duration:160s;animation-delay:-60s}.cloud.c3{animation-duration:200s;animation-delay:-110s}
+.palm-sway{transform-box:fill-box;transform-origin:50% 100%;animation:sway 7s ease-in-out infinite alternate}.palm-sway.slow{animation-duration:9s;animation-delay:-3s}
+.frond-wave{transform-box:fill-box;transform-origin:0% 100%;animation:wave 4s ease-in-out infinite alternate}
+.train{animation:roll 34s linear infinite;animation-delay:1.5s;transform:translateX(-900px)}
+.wheel{transform-box:fill-box;transform-origin:center;animation:spin 1.2s linear infinite}
+.puff{opacity:0;transform-box:fill-box;transform-origin:center;animation:puff 3.2s ease-out infinite}.puff:nth-child(2){animation-delay:1.1s}.puff:nth-child(3){animation-delay:2.2s}
+.bird{animation:fly 40s linear infinite}.bird.b2{animation-delay:-14s;animation-duration:52s}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes breathe{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.08);opacity:1}}
+@keyframes drift{from{transform:translateX(-400px)}to{transform:translateX(2000px)}}
+@keyframes sway{from{transform:rotate(-2.2deg)}to{transform:rotate(2.2deg)}}
+@keyframes wave{from{transform:rotate(-3deg)}to{transform:rotate(4deg)}}
+@keyframes roll{from{transform:translateX(-900px)}to{transform:translateX(1900px)}}
+@keyframes puff{0%{opacity:.7;transform:translate(0,0) scale(.4)}100%{opacity:0;transform:translate(-70px,-60px) scale(1.6)}}
+@keyframes fly{from{transform:translate(-100px,0)}to{transform:translate(1800px,-120px)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+<rect width="1600" height="900" fill="url(#skyBg)"/>
+        <g class="sun-glow"><circle cx="520" cy="560" r="330" fill="url(#sunG)"/></g>
+        <g class="rays" opacity=".16" fill="#fff0b8">
+            <polygon points="520,560 480,-400 560,-400"/><polygon points="520,560 480,1520 560,1520"/>
+            <polygon points="520,560 -400,520 -400,600"/><polygon points="520,560 1440,520 1440,600"/>
+        </g>
+        <circle cx="520" cy="560" r="78" fill="#fff6d0"/>
+        <g class="cloud c1" fill="#fff" opacity=".55"><ellipse cx="0" cy="170" rx="120" ry="24"/><ellipse cx="-60" cy="155" rx="70" ry="22"/><ellipse cx="60" cy="152" rx="60" ry="20"/></g>
+        <g class="cloud c2" fill="#fff" opacity=".4"><ellipse cx="0" cy="300" rx="150" ry="28"/><ellipse cx="70" cy="284" rx="80" ry="24"/></g>
+        <g class="cloud c3" fill="#ffe9c0" opacity=".5"><ellipse cx="0" cy="420" rx="110" ry="20"/><ellipse cx="-50" cy="406" rx="60" ry="18"/></g>
+        <g class="bird" fill="none" stroke="#10303d" stroke-width="3" stroke-linecap="round" opacity=".7"><path d="M0 260 q10 -12 20 0 q10 -12 20 0"/><path d="M60 290 q8 -9 16 0 q8 -9 16 0"/></g>
+        <g class="bird b2" fill="none" stroke="#10303d" stroke-width="3" stroke-linecap="round" opacity=".6"><path d="M0 220 q9 -10 18 0 q9 -10 18 0"/></g>
+        <path d="M0 640 L170 470 L300 570 L470 400 L690 600 L860 480 L1060 620 L1250 450 L1430 590 L1600 500 V760 H0Z" fill="#1c6a72" opacity=".9"/>
+        <path d="M0 690 Q220 560 460 650 T900 640 T1340 620 T1600 660 V780 H0Z" fill="#287d56"/>
+        <g transform="translate(850 560)">
+            <line x1="62" y1="-16" x2="62" y2="-86" stroke="#2b1c14" stroke-width="3"/>
+            <path d="M62 -86 h34 l-8 8 l8 8 h-34Z" fill="#e0453c"/>
+            <path d="M-8 28 L62 -18 L132 28Z" fill="#a62f35"/>
+            <rect x="4" y="28" width="116" height="48" fill="#f6ecd4"/>
+            <rect x="14" y="40" width="20" height="20" fill="#5fa8c8"/><rect x="90" y="40" width="20" height="20" fill="#5fa8c8"/>
+            <rect x="50" y="42" width="24" height="34" fill="#1a3a68"/>
+        </g>
+        <path d="M0 740 Q400 700 800 716 T1600 700 V820 H0Z" fill="url(#field)"/>
+        <path d="M0 740 Q400 700 800 716 T1600 700 V820 H0Z" fill="url(#rows)"/>
+        <rect x="0" y="796" width="1600" height="104" fill="#2d6d44"/>
+        <line x1="0" y1="824" x2="1600" y2="824" stroke="#6b4630" stroke-width="16" stroke-dasharray="7 22"/>
+        <line x1="0" y1="818" x2="1600" y2="818" stroke="#c9ccd1" stroke-width="3.5"/>
+        <line x1="0" y1="830" x2="1600" y2="830" stroke="#c9ccd1" stroke-width="3.5"/>
+        <g class="train">
+            <g transform="translate(0 746)">
+                <rect x="360" y="12" width="120" height="58" rx="6" fill="#f2b84b"/>
+                <rect x="372" y="-14" width="70" height="30" rx="4" fill="#12303f"/>
+                <rect x="380" y="-6" width="24" height="16" fill="#9fd8ee"/><rect x="410" y="-6" width="24" height="16" fill="#9fd8ee"/>
+                <rect x="448" y="-6" width="14" height="22" fill="#12303f"/>
+                <rect x="360" y="50" width="120" height="8" fill="#c0392b"/>
+                <circle cx="486" cy="40" r="7" fill="#fff6c4"/>
+                <g><circle class="puff" cx="455" cy="-12" r="14" fill="#fff" opacity=".7"/><circle class="puff" cx="455" cy="-12" r="14" fill="#fff" opacity=".7"/><circle class="puff" cx="455" cy="-12" r="14" fill="#fff" opacity=".7"/></g>
+                <g fill="#fffdf7"><rect x="230" y="14" width="120" height="56" rx="6"/><rect x="100" y="14" width="120" height="56" rx="6"/><rect x="-30" y="14" width="120" height="56" rx="6"/></g>
+                <g fill="#5fa8c8">
+                    <rect x="244" y="26" width="20" height="16" rx="2"/><rect x="274" y="26" width="20" height="16" rx="2"/><rect x="304" y="26" width="20" height="16" rx="2"/>
+                    <rect x="114" y="26" width="20" height="16" rx="2"/><rect x="144" y="26" width="20" height="16" rx="2"/><rect x="174" y="26" width="20" height="16" rx="2"/>
+                    <rect x="-16" y="26" width="20" height="16" rx="2"/><rect x="14" y="26" width="20" height="16" rx="2"/><rect x="44" y="26" width="20" height="16" rx="2"/>
+                </g>
+                <g fill="#2f8a57"><rect x="230" y="52" width="120" height="8"/><rect x="100" y="52" width="120" height="8"/><rect x="-30" y="52" width="120" height="8"/></g>
+                <rect x="-30" y="66" width="510" height="8" fill="#12303f"/>
+                <g fill="#12303f" stroke="#c9ccd1" stroke-width="2">
+                    <circle class="wheel" cx="0" cy="78" r="9"/><circle class="wheel" cx="60" cy="78" r="9"/><circle class="wheel" cx="130" cy="78" r="9"/><circle class="wheel" cx="190" cy="78" r="9"/>
+                    <circle class="wheel" cx="260" cy="78" r="9"/><circle class="wheel" cx="320" cy="78" r="9"/><circle class="wheel" cx="390" cy="78" r="11"/><circle class="wheel" cx="450" cy="78" r="11"/>
+                </g>
+            </g>
+        </g>
+        <g transform="translate(150 900) scale(1.25)"><g class="palm-sway"><use href="#palm"/></g></g>
+        <g transform="translate(310 900) scale(.8)"><g class="palm-sway slow"><use href="#palm"/></g></g>
+        <g transform="translate(1470 900) scale(1.1)"><g class="palm-sway slow"><use href="#palm"/></g></g>
+        <g transform="translate(1340 900) scale(.7)"><g class="palm-sway"><use href="#palm"/></g></g>
+    </svg>

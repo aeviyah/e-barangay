@@ -1,0 +1,7 @@
+.codex_tmp/
+storage/uploads/*
+!storage/uploads/.gitkeep
+uploads/posts/*
+!uploads/posts/.gitkeep
+!uploads/posts/.htaccess
+*.log
