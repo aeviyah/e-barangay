@@ -17,6 +17,11 @@ $user = current_user();
 $canCreate = can_manage_module($slug);
 $canApprove = can_approve_module($slug);
 
+// Modules that use the simple Pending / Approved / Rejected status flow.
+// (Both "blotter" and "blotters" are listed so it works with either module slug.)
+$approvalStatuses = ['Pending', 'Approved', 'Rejected'];
+$simpleApproval = in_array($slug, ['documents', 'complaints', 'blotter', 'blotters'], true);
+
 function resident_record_clause(string $slug, array &$params): string
 {
     if (role_slug() !== 'resident') {
@@ -25,7 +30,7 @@ function resident_record_clause(string $slug, array &$params): string
 
     if ($slug === 'announcements') {
         // Residents only see announcements that were actually released, never drafts.
-        return " AND service_records.status IN ('Ready for Release', 'Completed', 'Processing')";
+        return " AND service_records.status IN ('Release', 'Completed', 'Processing')";
     }
 
     $params[] = current_resident_id();
@@ -122,9 +127,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $clause = resident_record_clause($slug, $params);
         $record = fetch_one('SELECT * FROM service_records WHERE id = ? AND module_slug = ?' . $clause, $params);
 
-        $documentStatusAllowed = in_array($status, ['Pending', 'Approved', 'Rejected'], true);
-        $statusAllowed = $slug === 'documents'
-            ? $documentStatusAllowed
+        // Documents, complaints and blotter only allow Pending / Approved / Rejected.
+        $statusAllowed = $simpleApproval
+            ? in_array($status, $approvalStatuses, true)
             : (in_array($status, workflow_statuses(), true) && can_transition($record['status'] ?? '', $status, $slug));
         if ($record && $statusAllowed) {
             run_query(
@@ -350,7 +355,9 @@ page_header($module['label'], $module['description'], $headerActions);
                 <label>Status</label>
                 <select class="form-control" name="status">
                     <option value="<?= e($detail['status']) ?>" selected><?= e($detail['status']) ?> (current)</option>
-                    <?php foreach (($slug === 'documents' ? ['Pending', 'Approved', 'Rejected'] : (workflow_transitions()[$detail['status']] ?? [])) as $workflowStatus): if ($slug !== 'documents' && !can_transition($detail['status'], $workflowStatus, $slug)) { continue; } ?>
+                    <?php foreach (($simpleApproval ? $approvalStatuses : (workflow_transitions()[$detail['status']] ?? [])) as $workflowStatus):
+                        if ($workflowStatus === $detail['status']) { continue; }
+                        if (!$simpleApproval && !can_transition($detail['status'], $workflowStatus, $slug)) { continue; } ?>
                         <option><?= e($workflowStatus) ?></option>
                     <?php endforeach; ?>
                 </select>
@@ -360,7 +367,7 @@ page_header($module['label'], $module['description'], $headerActions);
                 <textarea class="form-control" name="notes" rows="3" placeholder="Verification result, approval reason, release note, or correction needed"></textarea>
             </div>
             <div class="form-actions full">
-                <?php if ($slug === 'documents'): ?><button class="btn btn-approve" type="submit" name="approval_action" value="Approved">Approve</button><button class="btn btn-reject" type="submit" name="approval_action" value="Rejected">Reject</button><?php endif; ?>
+                <?php if ($simpleApproval): ?><button class="btn btn-approve" type="submit" name="approval_action" value="Approved">Approve</button><button class="btn btn-reject" type="submit" name="approval_action" value="Rejected">Reject</button><?php endif; ?>
                 <button class="btn" type="submit">Save Status</button>
             </div>
         </form>
@@ -402,7 +409,7 @@ page_header($module['label'], $module['description'], $headerActions);
         <input name="q" placeholder="Search reference, title, requester or category" value="<?= e($search) ?>">
         <select name="status" data-autosubmit>
             <option value="">All statuses</option>
-            <?php foreach (workflow_statuses() as $workflowStatus): ?>
+            <?php foreach (($simpleApproval ? $approvalStatuses : workflow_statuses()) as $workflowStatus): ?>
                 <option value="<?= e($workflowStatus) ?>" <?= selected($status, $workflowStatus) ?>><?= e($workflowStatus) ?></option>
             <?php endforeach; ?>
         </select>

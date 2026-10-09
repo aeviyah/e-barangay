@@ -148,14 +148,15 @@ audit_log('Printed certificate', 'Documents', (int) $record['id'], $record['refe
 <body>
     <div class="preview-bar">
         <div>
-            <a class="bar-btn bar-back" href="javascript:window.close()">&larr; Close</a>
-            <div class="preview-title">Official Certificate Preview - <?= e($record['reference_no']) ?></div>
+            <a class="bar-btn bar-back" href="javascript:window.close()">&larr; Close</a> <br>
+            <br> <div class="preview-title"> Official Certificate Preview - <?= e($record['reference_no']) ?></div>
         </div>
         <div class="preview-actions">
+            <button type="button" class="bar-btn bar" style="background-color: #007bff; color: #ffffff; padding: 6px 12px; border: none; border-radius: 4px;">Download: </button>
+            <button type="button" class="bar-btn bar-pdf" onclick="downloadCertPDF()">as PDF</button>
+            <button type="button" class="bar-btn bar-word" onclick="downloadCertWord()"> as Word</button>
+            <button type="button" class="bar-btn bar-excel" onclick="downloadCertExcel()">as Excel</button>
             <button type="button" class="bar-btn bar-print" onclick="window.print()">Print Certificate</button>
-            <button type="button" class="bar-btn bar-pdf" onclick="downloadCertPDF()">Download as PDF</button>
-            <button type="button" class="bar-btn bar-word" onclick="downloadCertWord()">Download requested document as Word</button>
-            <button type="button" class="bar-btn bar-excel" onclick="downloadCertExcel()">Download request as Excel</button>
         </div>
     </div>
 
